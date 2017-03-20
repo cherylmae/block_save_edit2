@@ -1,0 +1,14 @@
+<?php
+/*
+ * hook_form_alter
+ */
+function block_save_edit2_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == "block_admin_configure"){
+    $form['actions']['save_edit'] = array('#type'=> 'submit' ,'#value'=>'Save and Edit');
+    $form['#submit'][] = 'block_save_edit2_submit';
+    $form_state['redir'] = current_path();
+  }
+}
+function block_save_edit2_submit($form, &$form_state){
+	drupal_goto($form_state['redir']);
+}
